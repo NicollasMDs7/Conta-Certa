@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, CircleCheckBig  } from "lucide-react";
 import { useState } from "react";
 
 export default function Login() {
@@ -48,121 +48,203 @@ export default function Login() {
           <div className="w-full ">
             <ul className="text-lg md:text-xl space-y-3">
               <li className="flex items-center">
-                <span className="mr-2">•</span>
+                <span className="mr-2"><CircleCheckBig className="text-blue-500"/></span>
                 Controle completo de receitas e despesas
               </li>
               <li className="flex items-center">
-                <span className="mr-2">•</span>
+                <span className="mr-2"><CircleCheckBig className="text-blue-500"/></span>
                 Gráficos e relatórios detalhados
               </li>
               <li className="flex items-center">
-                <span className="mr-2">•</span>
+                <span className="mr-2"><CircleCheckBig className="text-blue-500"/></span>
                 Perfis para uso pessoal e empresarial
               </li>
               <li className="flex items-center">
-                <span className="mr-2">•</span>
+                <span className="mr-2"><CircleCheckBig className="text-blue-500"/></span>
                 Segurança e privacidade dos seus dados
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="w-[50%] flex justify-center items-center     ">
-          <Card className="w-[50%] flex justify-center items-center ">
-            <CardHeader>
-              <CardTitle>
-                <Tabs defaultValue="login" className="w-[400px]">
-                  <TabsList className="w-full">
-                    <TabsTrigger value="login" className="w-[50%]">
+        <div className="w-full lg:w-1/2 flex justify-center items-center order-1 lg:order-2">
+          <Card className="w-full max-w-md shadow-lg border-blue-100">
+            <CardHeader className="pb-2">
+              <Tabs defaultValue="login" className="w-full">
+                <TabsList className="w-full grid grid-cols-2 mb-4">
+                  <TabsTrigger
+                    value="login"
+                    className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
+                  >
+                    Login
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="cadastro"
+                    className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
+                  >
+                    Cadastro
+                  </TabsTrigger>
+                </TabsList>
+
+                {/* Login Tab */}
+                <TabsContent value="login">
+                  <div>
+                    <CardTitle className="text-2xl font-semibold text-blue-900">
                       Login
-                    </TabsTrigger>
-                    <TabsTrigger value="cadastro" className="w-[50%]">
-                      Cadastro
-                    </TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="login">
-                    <Card className="w-[400px]">
-                      <CardHeader>
-                        <CardTitle className="text-2xl font-semibold">
-                          Login
-                        </CardTitle>
-                        <CardDescription className="text-sm">
-                          Digite suas credenciais para acessar sua conta
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="flex flex-col gap-8 justify-center items-center ">
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
-                          <Label htmlFor="email">Email</Label>
-                          <Input type="email" id="email" placeholder="Email" />
-                        </div>
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
-                          <Label htmlFor="senha">Senha</Label>
-                          <div className="relative">
-                            <Input
-                              type={showPassword ? "text" : "password"}
-                              id="senha"
-                              placeholder="******"
-                            />
-                            <button
-                              type="button"
-                              onClick={togglePasswordVisibility}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                              aria-label={
-                                showPassword
-                                  ? "Esconder senha"
-                                  : "Mostrar senha"
-                              }
-                            >
-                              {showPassword ? (
-                                <EyeOff className="h-5 w-5" />
-                              ) : (
-                                <Eye className="h-5 w-5" />
-                              )}
-                            </button>
-                          </div>
-                        </div>
-                        <Button className="w-[80%] flex justify-center items-center bg-blue-500 hover:bg-blue-800">
-                          Entrar
-                        </Button>
-                      </CardContent>
-                      <CardFooter className="flex justify-center hover:underline cursor-pointer text-blue-400 hover:text-blue-600">
-                        <a href="">Esqueceu sua senha?</a>
-                      </CardFooter>
-                    </Card>
-                  </TabsContent>
-                  <TabsContent value="cadastro">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Criar Conta</CardTitle>
-                        <CardDescription>
-                          Preencha seus dados para criar uma nova conta
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
-                          <Label htmlFor="nome">Nome</Label>
-                          <Input type="nome" id="nome" placeholder="Nome" />
-                        </div>
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
-                          <Label htmlFor="email">Email</Label>
-                          <Input type="email" id="email" placeholder="Email" />
-                        </div>
-                      </CardContent>
-                      <CardFooter>
-                        <p>Card Footer</p>
-                      </CardFooter>
-                    </Card>
-                  </TabsContent>
-                </Tabs>
-              </CardTitle>
+                    </CardTitle>
+                    <CardDescription className="text-blue-600/70">
+                      Digite suas credenciais para acessar sua conta
+                    </CardDescription>
+                  </div>
+
+                  <CardContent className="pt-6 pb-2 space-y-5">
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-blue-800">
+                        Email
+                      </Label>
+                      <Input
+                        type="email"
+                        id="email"
+                        placeholder="seu@email.com"
+                        className="border-blue-200 focus-visible:ring-blue-500"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="senha" className="text-blue-800">
+                        Senha
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          id="senha"
+                          placeholder="******"
+                          className="border-blue-200 focus-visible:ring-blue-500"
+                        />
+                        <button
+                          type="button"
+                          onClick={togglePasswordVisibility}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-400 hover:text-blue-600"
+                          aria-label={
+                            showPassword ? "Esconder senha" : "Mostrar senha"
+                          }
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-5 w-5" />
+                          ) : (
+                            <Eye className="h-5 w-5" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-5">
+                      Entrar
+                    </Button>
+                  </CardContent>
+
+                  <CardFooter className="flex justify-center pt-2 pb-4">
+                    <a
+                      href="#"
+                      className="text-blue-500 hover:text-blue-700 hover:underline text-sm font-medium"
+                    >
+                      Esqueceu sua senha?
+                    </a>
+                  </CardFooter>
+                </TabsContent>
+
+                {/* Cadastro Tab */}
+                <TabsContent value="cadastro">
+                  <div>
+                    <CardTitle className="text-2xl font-semibold text-blue-900">
+                      Criar Conta
+                    </CardTitle>
+                    <CardDescription className="text-blue-600/70">
+                      Preencha seus dados para criar uma nova conta
+                    </CardDescription>
+                  </div>
+
+                  <CardContent className="pt-6 pb-2 space-y-5">
+                    <div className="space-y-2">
+                      <Label htmlFor="nome" className="text-blue-800">
+                        Nome
+                      </Label>
+                      <Input
+                        type="text"
+                        id="nome"
+                        placeholder="Seu nome completo"
+                        className="border-blue-200 focus-visible:ring-blue-500"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="email-cadastro" className="text-blue-800">
+                        Email
+                      </Label>
+                      <Input
+                        type="email"
+                        id="email-cadastro"
+                        placeholder="seu@email.com"
+                        className="border-blue-200 focus-visible:ring-blue-500"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="senha-cadastro" className="text-blue-800">
+                        Senha
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          id="senha-cadastro"
+                          placeholder="******"
+                          className="border-blue-200 focus-visible:ring-blue-500"
+                        />
+                        <button
+                          type="button"
+                          onClick={togglePasswordVisibility}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-400 hover:text-blue-600"
+                          aria-label={
+                            showPassword ? "Esconder senha" : "Mostrar senha"
+                          }
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-5 w-5" />
+                          ) : (
+                            <Eye className="h-5 w-5" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-5">
+                      Criar conta
+                    </Button>
+                  </CardContent>
+
+                  <CardFooter className="flex justify-center pt-2 pb-4">
+                    <p className="text-sm text-blue-600/70">
+                      Ao criar uma conta, você concorda com nossos
+                      <a
+                        href="#"
+                        className="text-blue-500 hover:text-blue-700 hover:underline ml-1"
+                      >
+                        Termos de Serviço
+                      </a>
+                    </p>
+                  </CardFooter>
+                </TabsContent>
+              </Tabs>
             </CardHeader>
           </Card>
         </div>
       </main>
-      <footer className="">
-        <p className="flex items-center justify-center flex-wrap gap-1 font-semibold text-lg">
-          © {currentYear} Conta Certa. Todos os direitos reservados.
-        </p>
+    <footer className="bg-white border-t border-blue-100 ">
+        <div className="container mx-auto ">
+          <p className="text-center text-blue-800 text-sm">
+            © {currentYear} Conta Certa. Todos os direitos reservados.
+          </p>
+        </div>
       </footer>
     </section>
   );
