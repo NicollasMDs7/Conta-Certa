@@ -1,3 +1,4 @@
+"use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
@@ -9,10 +10,18 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 export default function Login() {
   const currentYear = new Date().getFullYear();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <section className="w-full  flex flex-col justify-center items-center">
       <header className="w-full h-24 shadow-md border-b-2">
@@ -74,7 +83,9 @@ export default function Login() {
                   <TabsContent value="login">
                     <Card className="w-[400px]">
                       <CardHeader>
-                        <CardTitle className="text-2xl font-semibold">Login</CardTitle>
+                        <CardTitle className="text-2xl font-semibold">
+                          Login
+                        </CardTitle>
                         <CardDescription className="text-sm">
                           Digite suas credenciais para acessar sua conta
                         </CardDescription>
@@ -86,9 +97,33 @@ export default function Login() {
                         </div>
                         <div className="grid w-full max-w-sm items-center gap-1.5">
                           <Label htmlFor="senha">Senha</Label>
-                          <Input type="password" id="senha" placeholder="******" />
+                          <div className="relative">
+                            <Input
+                              type={showPassword ? "text" : "password"}
+                              id="senha"
+                              placeholder="******"
+                            />
+                            <button
+                              type="button"
+                              onClick={togglePasswordVisibility}
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                              aria-label={
+                                showPassword
+                                  ? "Esconder senha"
+                                  : "Mostrar senha"
+                              }
+                            >
+                              {showPassword ? (
+                                <EyeOff className="h-5 w-5" />
+                              ) : (
+                                <Eye className="h-5 w-5" />
+                              )}
+                            </button>
+                          </div>
                         </div>
-                        <Button className="w-[80%] flex justify-center items-center bg-blue-500 hover:bg-blue-800">Entrar</Button>
+                        <Button className="w-[80%] flex justify-center items-center bg-blue-500 hover:bg-blue-800">
+                          Entrar
+                        </Button>
                       </CardContent>
                       <CardFooter className="flex justify-center hover:underline cursor-pointer text-blue-400 hover:text-blue-600">
                         <a href="">Esqueceu sua senha?</a>
@@ -104,11 +139,11 @@ export default function Login() {
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                          <div className="grid w-full max-w-sm items-center gap-1.5">
+                        <div className="grid w-full max-w-sm items-center gap-1.5">
                           <Label htmlFor="nome">Nome</Label>
                           <Input type="nome" id="nome" placeholder="Nome" />
                         </div>
-                          <div className="grid w-full max-w-sm items-center gap-1.5">
+                        <div className="grid w-full max-w-sm items-center gap-1.5">
                           <Label htmlFor="email">Email</Label>
                           <Input type="email" id="email" placeholder="Email" />
                         </div>
